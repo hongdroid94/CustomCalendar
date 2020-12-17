@@ -1,5 +1,6 @@
 package com.hongdroid.customcalendar.adapter;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,17 +22,15 @@ import java.util.Calendar;
 import java.util.List;
 
 public class CalendarAdapter extends RecyclerView.Adapter {
+    private Context mContext;
     private final int VIEW_TYPE_HEADER = 0;
     private final int VIEW_TYPE_EMPTY = 1;
     private final int VIEW_TYPE_DAY = 2;
 
     private List<Object> mCalendarList;
 
-    public CalendarAdapter(List<Object> mCalendarList) {
-        this.mCalendarList = mCalendarList;
-    }
-
-    public void setCalendarList(List<Object> _calendarList) {
+    public CalendarAdapter(Context _context, List<Object> _calendarList) {
+        this.mContext = _context;
         this.mCalendarList = _calendarList;
     }
 
@@ -41,7 +40,6 @@ public class CalendarAdapter extends RecyclerView.Adapter {
         View holder = null;
         if (viewType == VIEW_TYPE_HEADER) {
             // 날짜 타입
-
             holder = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_calendar_header, parent, false);
             StaggeredGridLayoutManager.LayoutParams params = (StaggeredGridLayoutManager.LayoutParams) holder.getRootView().getLayoutParams();
             params.setFullSpan(true); // span을 하나로 통합
@@ -86,7 +84,8 @@ public class CalendarAdapter extends RecyclerView.Adapter {
             dayViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.e("TEST", model.getDay());
+//                    Log.e("Click Date", model.getYear() + " 년 " + model.getMonth() + " 월 " + model.getDay() + " 일 ");
+                    Toast.makeText(mContext, model.getYear() + " 년 " + model.getMonth() + " 월 " + model.getDay() + " 일 ", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -134,7 +133,6 @@ public class CalendarAdapter extends RecyclerView.Adapter {
     // 비어있는 요일 타입 ViewHolder
     private class EmptyViewHolder extends RecyclerView.ViewHolder {
 
-
         public EmptyViewHolder(@NonNull View itemView) {
             super(itemView);
         }
@@ -150,16 +148,6 @@ public class CalendarAdapter extends RecyclerView.Adapter {
         public DayViewHolder(@NonNull View itemView) {
             super(itemView);
             itemDay = itemView.findViewById(R.id.item_day);
-
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    int curPos = getAdapterPosition();
-//                    DayInfo item = (DayInfo) mCalendarList.get(curPos);
-//                    Log.e("DAY INFO ITEM", item.getDay());
-//                }
-//            });
-
         }
 
         public void bind(ViewModel model) {

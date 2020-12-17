@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private long mCurrentTime;
     public ArrayList<Object> mCalendarList = new ArrayList<>();
 
-    private TextView tv;
     private RecyclerView mRv_calendar;
     private CalendarAdapter mAdapter;
 
@@ -74,8 +73,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL);
-        mAdapter = new CalendarAdapter(mCalendarList);
-        mAdapter.setCalendarList(mCalendarList);
+        mAdapter = new CalendarAdapter(this, mCalendarList);
         mRv_calendar.setLayoutManager(layoutManager);
         mRv_calendar.setAdapter(mAdapter);
 
