@@ -2,11 +2,9 @@ package com.hongdroid.customcalendar;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.hongdroid.customcalendar.adapter.CalendarAdapter;
 import com.hongdroid.customcalendar.utils.Keys;
@@ -71,10 +69,7 @@ public class MainActivity extends AppCompatActivity {
         if(mCalendarList == null) {
             Log.w("Warning", "No Query, not initializing RecyclerView");
         }
-
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL);
         mAdapter = new CalendarAdapter(this, mCalendarList);
-        mRv_calendar.setLayoutManager(layoutManager);
         mRv_calendar.setAdapter(mAdapter);
 
         if(mCenterPos >= 0) {
