@@ -22,7 +22,7 @@
             android:layout_weight="1"
             android:padding="16dp"
             android:textSize="18sp"
-            tools:text="제목" />
+            android:text="달력" />
     </LinearLayout>
 
     <!-- day -->
